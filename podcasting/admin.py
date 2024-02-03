@@ -15,7 +15,7 @@ from podcasting.forms import (
     AdminEpisodeForm,
     EnclosureForm as AdminEnclosureForm,
 )
-from podcasting.models import Show, Episode, Enclosure, EmbedMedia
+from podcasting.models import Show, Episode, Enclosure, EmbedMedia, Shownote
 from podcasting.utils.twitter import can_tweet
 
 
@@ -92,8 +92,12 @@ class EnclosureAdmin(admin.ModelAdmin):
 class EmbedMediaAdmin(admin.ModelAdmin):
     model = EmbedMedia
 
+class ShownoteAdmin(admin.ModelAdmin):
+    model = Shownote
+
 
 admin.site.register(Show, ShowAdmin)
 admin.site.register(Episode, EpisodeAdmin)
 admin.site.register(Enclosure, EnclosureAdmin)
 admin.site.register(EmbedMedia, EmbedMediaAdmin)
+admin.site.register(Shownote, ShownoteAdmin)

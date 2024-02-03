@@ -268,6 +268,7 @@ class AdminShowForm(forms.ModelForm):
             "keywords",
             "organization",
             "license",
+            "category",
             "explicit",
             "link",
             "on_itunes",
@@ -324,6 +325,8 @@ class AdminEpisodeForm(forms.ModelForm):
             "keywords",
             "explicit",
             "block",
+            "number",
+            "season"
         ]
         if "taggit" in settings.INSTALLED_APPS:
             fields.append("tags")

@@ -186,6 +186,8 @@ class Show(models.Model):
         ),
     )
 
+
+
     enable_comments = models.BooleanField(default=True)
 
     author_text = models.CharField(
@@ -356,6 +358,13 @@ class Show(models.Model):
         help_text=_(
             """A comma-demlimitedlist of up to 12 words for iTunes
             searches. Perhaps include misspellings of the title."""
+        ),
+    )
+    category = models.CharField(
+        _("category"),
+        max_length=255,
+        help_text=_(
+            "iTunes-Podcast-Category for this show"
         ),
     )
     itunes = models.URLField(
@@ -587,6 +596,9 @@ class Episode(models.Model):
             ""
         ),
     )
+    number = models.IntegerField(_("Episode-Number"))
+    season = models.IntegerField(_("Season-Number"), null=True,
+                                 blank=True, default=None)
 
     objects = EpisodeQuerySet.as_manager()
     tags = TaggableManager(blank=True)
@@ -750,6 +762,12 @@ class Enclosure(models.Model):
         help_text=_("Duration of the audio file, in seconds (always as integer)."),
     )
 
+    @property
+    def isoduration(self):
+        td = datetime.timedelta(seconds=self.duration)
+        return str(td)
+
+
     class Meta:
         ordering = (
             "url",
@@ -761,6 +779,29 @@ class Enclosure(models.Model):
     def __str__(self):
         return "{0} - {1}".format(self.url, self.mime)
 
+
+class Shownote(models.Model):
+    """
+    Associate shownote to an Episode.
+    """
+    episode = models.ForeignKey(
+        Episode, verbose_name=_("episode"), on_delete=models.PROTECT
+    )
+
+    position = models.IntegerField(default=0)
+
+    text = models.TextField(blank=True)
+
+    url = models.URLField(_("url"), help_text=_("URL of the show note link"))
+
+    class Meta:
+        ordering = ("episode", "position")
+        unique_together = ("episode", "url")
+        verbose_name = _("Shownote")
+        verbose_name_plural = _("Shownotes")
+
+    def __str__(self):
+        return "{0} - {1}. {2}".format(self.episode, self.position, self.text)
 
 class EmbedMedia(models.Model):
     """

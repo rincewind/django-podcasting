@@ -113,6 +113,7 @@ class ITunesElements(object):
         handler.addQuickElement("itunes:category", attrs={"text": self.feed["categories"][0]})
         handler.addQuickElement("itunes:summary", show.description)
         handler.addQuickElement("itunes:explicit", show.get_explicit_display())
+
         if show.redirect:
             handler.addQuickElement("itunes:new-feed-url", show.redirect)
         handler.addQuickElement("keywords", show.keywords)
@@ -182,6 +183,11 @@ class ITunesElements(object):
         handler.addQuickElement("itunes:duration", "%02d:%02d:%02d" % (episode.hours,
                                                                        episode.minutes,
                                                                        episode.seconds))
+        if episode.season is not None:
+            handler.addQuickElement("itunes:season", str(episode.season))
+
+        handler.addQuickElement("itunes:episode", str(episode.episode_number))
+
         handler.addQuickElement("itunes:keywords", episode.keywords)
         handler.addQuickElement("itunes:explicit", episode.get_explicit_display())
         if episode.block:
@@ -216,7 +222,7 @@ class ShowFeed(Feed):
         return show.link
 
     def categories(self, show):
-        return ("Music",)
+        return (show.categorie,)
 
     def feed_copyright(self, show):
         if licenses:
