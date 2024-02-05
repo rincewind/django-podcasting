@@ -222,7 +222,7 @@ class ShowFeed(Feed):
         return show.link
 
     def categories(self, show):
-        return (show.categorie,)
+        return (show.category,)
 
     def feed_copyright(self, show):
         if licenses:
