@@ -268,7 +268,7 @@ class AdminShowForm(forms.ModelForm):
             "keywords",
             "organization",
             "license",
-            "category",
+            "categories",
             "explicit",
             "link",
             "on_itunes",

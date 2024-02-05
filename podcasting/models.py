@@ -360,11 +360,11 @@ class Show(models.Model):
             searches. Perhaps include misspellings of the title."""
         ),
     )
-    category = models.CharField(
-        _("category"),
+    categories = models.CharField(
+        _("categories"),
         max_length=255,
         help_text=_(
-            "iTunes-Podcast-Category for this show"
+            "iTunes-Podcast-Categories for this show. Comma separated, use slash to separate subcategory."
         ),
     )
     itunes = models.URLField(

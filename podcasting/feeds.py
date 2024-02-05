@@ -110,7 +110,15 @@ class ITunesElements(object):
         handler.addQuickElement("itunes:name", show.owner.get_full_name())
         handler.addQuickElement("itunes:email", show.owner.email)
         handler.endElement("itunes:owner")
-        handler.addQuickElement("itunes:category", attrs={"text": self.feed["categories"][0]})
+        for category in self.feed["categories"]:
+            if "/" in category:
+                toplevel, sublevel = category.split("/")
+                handler.startElement("itunes:category", {"text": toplevel})
+                handler.addQuickElement("itunes:category", attrs={"text": sublevel})
+                handler.endElement("itunes:category")
+            else:
+                handler.addQuickElement("itunes:category", attrs={"text": category})
+
         handler.addQuickElement("itunes:summary", show.description)
         handler.addQuickElement("itunes:explicit", show.get_explicit_display())
 
@@ -222,7 +230,7 @@ class ShowFeed(Feed):
         return show.link
 
     def categories(self, show):
-        return (show.category,)
+        return [x.strip() for x in show.categories.split(",")]
 
     def feed_copyright(self, show):
         if licenses:
