@@ -186,7 +186,7 @@ class ITunesElements(object):
         if episode.season is not None:
             handler.addQuickElement("itunes:season", str(episode.season))
 
-        handler.addQuickElement("itunes:episode", str(episode.episode_number))
+        handler.addQuickElement("itunes:episode", str(episode.number))
 
         handler.addQuickElement("itunes:keywords", episode.keywords)
         handler.addQuickElement("itunes:explicit", episode.get_explicit_display())
