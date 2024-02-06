@@ -165,7 +165,7 @@ class ITunesElements(object):
                     itunes_lg_url = None
             elif sorl:
                 itunes_sm_url = sorl.thumbnail.get_thumbnail(episode.original_image, "144x144").url
-                itunes_lg_url = sorl.thumbnail.get_thumbnail(episode.original_image, "1400x1400").url  # noqa
+                itunes_lg_url = sorl.thumbnail.get_thumbnail(episode.original_image, "3000x3000").url  # noqa
             else:
                 itunes_sm_url = episode.original_image.url
                 itunes_lg_url = episode.original_image.url

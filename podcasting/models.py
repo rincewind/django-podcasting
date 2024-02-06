@@ -254,11 +254,11 @@ class Show(models.Model):
             on_delete=models.SET_NULL,
             help_text=_(
                 """
-                A podcast must have 1400 x 1400 pixel cover art in JPG or PNG
+                A podcast must have 3000 x 3000 pixel cover art in JPG or PNG
                 format using RGB color space. See our technical spec for
                 details. To be eligible for featuring on iTunes Stores,
                 choose an attractive, original, and square JPEG (.jpg) or
-                PNG (.png) image at a size of 1400x1400 pixels. The image
+                PNG (.png) image at a size of 3000x3000 pixels. The image
                 will be scaled down to 50x50 pixels at smallest in iTunes.
                 For reference see the <a
                 href="http://www.apple.com/itunes/podcasts/specs.html#metadata">iTunes
@@ -276,11 +276,11 @@ class Show(models.Model):
             blank=True,
             help_text=_(
                 """
-                A podcast must have 1400 x 1400 pixel cover art in JPG or PNG
+                A podcast must have 3000 x 3000 pixel cover art in JPG or PNG
                 format using RGB color space. See our technical spec for
                 details. To be eligible for featuring on iTunes Stores,
                 choose an attractive, original, and square JPEG (.jpg) or
-                PNG (.png) image at a size of 1400x1400 pixels. The image
+                PNG (.png) image at a size of 3000 x 3000 pixels. The image
                 will be scaled down to 50x50 pixels at smallest in iTunes.
                 For reference see the <a
                 href="http://www.apple.com/itunes/podcasts/specs.html#metadata">iTunes
@@ -320,7 +320,7 @@ class Show(models.Model):
         )
         img_itunes_lg = ImageSpecField(
             source="original_image",
-            processors=[ResizeToFill(1400, 1400)],
+            processors=[ResizeToFill(3000, 3000)],
             options={"quality": 100},
         )
 
@@ -498,11 +498,11 @@ class Episode(models.Model):
             on_delete=models.PROTECT,
             help_text=_(
                 """
-                A podcast must have 1400 x 1400 pixel cover art in JPG or PNG
+                A podcast must have 3000 x 3000 pixel cover art in JPG or PNG
                 format using RGB color space. See our technical spec for
                 details. To be eligible for featuring on iTunes Stores,
                 choose an attractive, original, and square JPEG (.jpg) or
-                PNG (.png) image at a size of 1400x1400 pixels. The image
+                PNG (.png) image at a size of 3000x3000 pixels. The image
                 will be scaled down to 50x50 pixels at smallest in iTunes.
                 For reference see the <a
                 href="http://www.apple.com/itunes/podcasts/specs.html#metadata">iTunes
@@ -520,11 +520,11 @@ class Episode(models.Model):
             blank=True,
             help_text=_(
                 """
-                A podcast must have 1400 x 1400 pixel cover art in JPG or PNG
+                A podcast must have 3000 x 3000 pixel cover art in JPG or PNG
                 format using RGB color space. See our technical spec for
                 details. To be eligible for featuring on iTunes Stores,
                 choose an attractive, original, and square JPEG (.jpg) or
-                PNG (.png) image at a size of 1400x1400 pixels. The image
+                PNG (.png) image at a size of 3000x3000 pixels. The image
                 will be scaled down to 50x50 pixels at smallest in iTunes.
                 For reference see the <a
                 href="http://www.apple.com/itunes/podcasts/specs.html#metadata">iTunes
@@ -564,7 +564,7 @@ class Episode(models.Model):
         )
         img_itunes_lg = ImageSpecField(
             source="original_image",
-            processors=[ResizeToFill(1400, 1400)],
+            processors=[ResizeToFill(3000, 3000)],
             options={"quality": 100},
         )
 
