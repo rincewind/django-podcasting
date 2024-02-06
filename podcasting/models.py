@@ -141,13 +141,21 @@ class Show(models.Model):
         ),
     )
 
-    owner = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        related_name="podcast_shows",
-        verbose_name=_("owner"),
-        on_delete=models.PROTECT,
-        help_text=_("""Make certain the user account has a name and e-mail address."""),
+
+    owner_name = models.CharField(
+        _("owner name"),
+        max_length=255,
+        help_text=_(
+            "Name of the organization, company or Web site owning the podcast. (itunes:owner)"
+        ),
     )
+
+
+    owner_email = models.EmailField(
+        _("owner email"),
+        help_text=_("Email address of the podcast owner (itunes:owner)."),
+    )
+
 
     editor_email = models.EmailField(
         _("editor email"),

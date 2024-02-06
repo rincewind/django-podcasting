@@ -106,10 +106,12 @@ class ITunesElements(object):
         handler.addQuickElement("guid", str(show.uuid), attrs={"isPermaLink": "false"})
         handler.addQuickElement("itunes:subtitle", self.feed["subtitle"])
         handler.addQuickElement("itunes:author", show.author_text)
+
         handler.startElement("itunes:owner", {})
-        handler.addQuickElement("itunes:name", show.owner.get_full_name())
-        handler.addQuickElement("itunes:email", show.owner.email)
+        handler.addQuickElement("itunes:name", show.owner_name)
+        handler.addQuickElement("itunes:email", show.owner_email)
         handler.endElement("itunes:owner")
+
         for category in self.feed["categories"]:
             if "/" in category:
                 toplevel, sublevel = category.split("/")
@@ -317,10 +319,10 @@ class AtomShowFeed(ShowFeed):
         return show.subtitle
 
     def author_name(self, show):
-        return show.owner.get_full_name()
+        return show.owner_name
 
     def author_email(self, show):
-        return show.owner.email
+        return show.owner_email
 
     def author_link(self, show):
         return show.link
