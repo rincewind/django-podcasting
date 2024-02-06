@@ -706,10 +706,10 @@ class Enclosure(models.Model):
     except AttributeError:
         MIME_CHOICES = (
             ("aiff", "audio/aiff"),
-            ("flac", "audio/flac"),
             ("mp3", "audio/mpeg"),
             ("mp4", "audio/mp4"),
             ("ogg", "audio/ogg"),
+            ("opus", "audio/opus"),
             ("flac", "audio/flac"),
             ("wav", "audio/wav"),
         )

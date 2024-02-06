@@ -11,6 +11,8 @@ def set_owner_from_owner(apps, schema_editor):
     for show in Show.objects.using(db_alias).all():
         show.owner_name = f"{show.owner.first_name} {show.owner.last_name}"
         show.owner_email = show.owner.email
+        show.save()
+
 
 
 class Migration(migrations.Migration):
