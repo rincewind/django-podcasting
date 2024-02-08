@@ -486,6 +486,15 @@ class Episode(models.Model):
         ),
     )
 
+    transcript =  models.URLField(
+        _("Transcript-URL"),
+        help_text=_(
+            """URL of the transcript file (vtt)."""
+        ),
+        blank=True,
+        default=""
+    )
+
     tracklist = models.TextField(
         _("tracklist"),
         blank=True,

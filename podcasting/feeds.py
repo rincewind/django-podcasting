@@ -196,6 +196,9 @@ class ITunesElements(object):
         if episode.season is not None:
             handler.addQuickElement("itunes:season", str(episode.season))
 
+        if episode.transcript:
+            handler.addQuickElement("podcast:transcript", attrs={"url":"episode.transcript", "type":"text/vtt"})
+
         handler.addQuickElement("itunes:episode", str(episode.number))
 
         handler.addQuickElement("itunes:keywords", episode.keywords)
@@ -204,7 +207,7 @@ class ITunesElements(object):
             handler.addQuickElement("itunes:block", "yes")
 
     def namespace_attributes(self):
-        return {"xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd"}
+        return {"xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd", "xmlns:podcast":"https://podcastindex.org/namespace/1.0"}
 
 
 class AtomITunesFeedGenerator(ITunesElements, Atom1Feed):
