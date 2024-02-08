@@ -197,7 +197,7 @@ class ITunesElements(object):
             handler.addQuickElement("itunes:season", str(episode.season))
 
         if episode.transcript:
-            handler.addQuickElement("podcast:transcript", attrs={"url":"episode.transcript", "type":"text/vtt"})
+            handler.addQuickElement("podcast:transcript", attrs={"url":episode.transcript, "type":"text/vtt"})
 
         handler.addQuickElement("itunes:episode", str(episode.number))
 
