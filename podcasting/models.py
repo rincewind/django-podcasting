@@ -721,6 +721,7 @@ class Enclosure(models.Model):
             ("opus", "audio/opus"),
             ("flac", "audio/flac"),
             ("wav", "audio/wav"),
+            ("html", "text/html"),
         )
 
     episodes = models.ManyToManyField(Episode, verbose_name=_("Episodes"))
